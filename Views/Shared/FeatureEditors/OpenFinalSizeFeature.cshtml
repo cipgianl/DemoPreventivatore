@@ -1,0 +1,221 @@
+﻿@model OpenFinalSizeFeature
+
+@{
+    var nameFeature = $"{Model.FeatureID}_{Model.SectionId}";
+    var options = new List<SelectListItem>();
+
+    for (int i = 0; i < Model.Options.Length; i++)
+    {
+        options.Add(new SelectListItem
+        {
+            Value = Model.Options[i].ID.ToString(),
+            Text = Model.Options[i].Descrizione,
+            Selected = Model.SelectedValue == Model.Options[i].ID ? true : false
+        });
+    }
+
+}
+
+<div id=@nameFeature class="container-fluid box-feature">
+
+    <div id="boxOFSF_cmbSize" style="min-width: 200px;" class="form-row">
+        <div class="col-10 col-form-label">
+            <label for="cmbOpenSize">@Model.Name</label>
+            <select id="cmbOpenSize" asp-items="options" asp-for="@Model.SelectedValue" class="form-control" style="max-width: 20em;"></select>
+        </div>
+    </div>
+
+
+    <div id="boxOFSF_txtSize" class="form-row" aria-describedby="helpOFSFSize">
+        <div class="col-sm-2 col-3">
+            <label for="txtOPenSize_Width" class="col-form-label ml-3">Base</label>
+            <input id="txtOpenSize_Width" type="text" class="form-control ml-3" style="max-width: 6em;" asp-for="Width" />
+            <div class="invalid-feedback ml-3">
+                Inserire un valore valido
+            </div>
+        </div>
+
+        <div class="col-sm-2 col-3">
+            <label for="txtOPenSize_Height" class="col-form-label ml-3">Altezza</label>
+            <input id="txtOpenSize_Height" type="text" class="form-control ml-3" style="max-width: 6em;" asp-for="Height" />
+            <div class="invalid-feedback ml-3">
+                Inserire un valore valido
+            </div>
+        </div>
+    </div>
+    <div id="helpOFSFSize" class="form-row ml-3 mt-3 text-muted small"></div>
+    <div id="alertOFSFSize" class="alert alert-danger small mt-3 mb-0"></div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function (event) {
+        $("#alertOFSFSize").hide();
+        $("#helpOFSFSize").hide();
+        $("#boxOFSF_txtSize").hide();
+        $("#alertOFSFSize").hide();
+
+        // Controllo se è cambiato il formato
+        $("#cmbOpenSize").change(function () {
+            var idProduct = $("#ProductId").val();
+            var selValue = $(this).val();
+
+            $.ajax({
+                url: "@Url.Action("GetSelectSize")",
+                data: { id: idProduct, value: selValue },
+                dataType: "json",
+                success: function (msg) {
+
+                    $("#txtOpenSize_Width").val(msg.width);
+                    $("#txtOpenSize_Height").val(msg.height);
+
+                    if (msg.openValue == true) {
+                        // Aggiungo gli attributi con i valori dei formati validi
+                        $("#boxOFSF_txtSize").attr("min-width", msg.minWidth);
+                        $("#boxOFSF_txtSize").attr("min-height", msg.minHeight);
+                        $("#boxOFSF_txtSize").attr("max-width", msg.maxWidth);
+                        $("#boxOFSF_txtSize").attr("max-height", msg.maxHeight);
+
+                        let validSize = "Formato Min: " + msg.minWidth + " x " + msg.minHeight + " - " + "Formato Max: " + msg.maxWidth + " x " + msg.maxHeight
+                        $("#helpOFSFSize").text(validSize);
+                        $("#helpOFSFSize").show();
+
+                        $("#txtOpenSize_Width").attr("required");
+                        $("#txtOpenSize_Height").attr("required");
+                        $("#boxOFSF_txtSize").show();
+                        $("#txtOpenSize_Width").focus();
+                    } else {
+                        $("#helpOFSFSize").val("");
+                        $("#helpOFSFSize").hide();
+                        // Rimuovo gli attributi con i valori dei formati validi
+                        $("#boxOFSF_txtSize").removeAttr("min-width");
+                        $("#boxOFSF_txtSize").removeAttr("min-height");
+                        $("#boxOFSF_txtSize").removeAttr("max-width");
+                        $("#boxOFSF_txtSize").removeAttr("max-height");
+
+                        $("#txtOpenSize_Width").removeClass("is-valid");
+                        $("#txtOpenSize_Height").removeClass("is-valid");
+                        $("#txtOpenSize_Width").removeClass("is-invalid");
+                        $("#txtOpenSize_Height").removeClass("is-invalid");
+                        $("#txtOpenSize_Width").removeAttr("required");
+                        $("#txtOpenSize_Height").removeAttr("required");
+                        $("#boxOFSF_txtSize").hide();
+                    }
+                },
+                error: function (req, status, error) {
+                    console.log(error);
+                }
+            })
+        });
+
+        // Controllo se per il formato libero, le dimensioni e l'orientamento siano corretti.
+        $("#txtOpenSize_Width, #txtOpenSize_Height").blur(function () {
+            let width = $("#txtOpenSize_Width").val();
+            let height = $("#txtOpenSize_Height").val();
+
+            let value = $(this).val();
+            if (value == 0 || value == '') {
+                $(this).removeClass("is-valid");
+                $(this).addClass("is-invalid");
+            } else {
+                $(this).removeClass("is-invalid");
+                $(this).addClass("is-valid");
+            }
+            if ((width != 0 && width != '') && (height != 0 && height != '')) {
+                let minWidth = $("#boxOFSF_txtSize").attr("min-width");
+                let minHeight = $("#boxOFSF_txtSize").attr("min-height");
+                let maxWidth = $("#boxOFSF_txtSize").attr("max-width");
+                let maxHeight = $("#boxOFSF_txtSize").attr("max-height");
+
+                // Ricavo l'orientamento dal componente orientationFeature
+                let orientation = detectFromOrientation();
+
+                // Controllo le dimensioni specificate a prescindere dall'orientamento
+                let tryOrientation = orientation;
+                let sizeOk = checkSize(width, height, tryOrientation);
+                if (!sizeOk) {
+                    tryOrientation = tryOrientation == 1 ? 2 : 1;
+                    sizeOk = checkSize(width, height, tryOrientation);
+                    if (!sizeOk) tryOrientation = orientation;
+                }
+
+                // Se le dimensioni sono giuste, ma l'orientamento rilevato è diverso da quello indicato sul form
+                if (sizeOk) {
+                    $("#alertOFSFSize").val("");
+                    $("#alertOFSFSize").hide();
+
+                    if (tryOrientation != orientation) {
+                        sizeOk = false;
+
+                        // Controllo se il prodotto ha configurato il servizio ORIENTATION
+                        if ($("#ORIENTATION_1").length) {
+                            // Controllo se quello rilevato è stato configurato
+                            let trovato = existOrientationValue(tryOrientation);
+                            if (trovato) {
+                                setOrientation(tryOrientation);
+                            } else {
+                                let strOrient = tryOrientation == 1 ? "Verticale" : "Orizzontale";
+                                $("#alertOFSFSize").html("Il formato per il prodotto non può avere un'orientamento <b>" + strOrient + "</b>.");
+                                $("#alertOFSFSize").show();
+                            }
+                            orientation = parseInt($("#cmbOrientation").val());
+                            sizeOk = orientation == tryOrientation;
+                        }
+                    }
+                }
+
+
+                // Se le dimensioni sono errate
+                if (!sizeOk) {
+                    $("#txtOpenSize_Width").removeClass("is-valid");
+                    $("#txtOpenSize_Height").removeClass("is-valid");
+                    $("#txtOpenSize_Width").addClass("is-invalid");
+                    $("#txtOpenSize_Height").addClass("is-invalid");
+                } else {
+                    // Le dimensioni sono corrette
+                    $("#txtOpenSize_Width").removeClass("is-invalid");
+                    $("#txtOpenSize_Height").removeClass("is-invalid");
+                    $("#txtOpenSize_Width").addClass("is-valid");
+                    $("#txtOpenSize_Height").addClass("is-valid");
+                }
+
+
+            }
+        });
+    });
+
+    // Controlla se la dimensione è giusta in base all'orientamento
+    function checkSize(width, height, orientation) {
+        let result = false;
+
+        width = parseFloat(width);
+        height = parseFloat(height);
+
+        let minWidth = parseFloat($("#boxOFSF_txtSize").attr("min-width"));
+        let minHeight = parseFloat($("#boxOFSF_txtSize").attr("min-height"));
+        let maxWidth = parseFloat($("#boxOFSF_txtSize").attr("max-width"));
+        let maxHeight = parseFloat($("#boxOFSF_txtSize").attr("max-height"));
+
+        if (orientation == 1) {     // Verticale
+            if ((width >= minWidth && width <= maxWidth) && (height >= minHeight && height <= maxHeight)) {
+                result = true;
+            }
+        } else {    // Orizzontale
+            if ((width >= minHeight && width <= maxHeight) && (height >= minWidth && height <= maxWidth)) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    // Rileva dal componente del servizio ORIENTATION, il valore del campo
+    function detectFromOrientation() {
+        let orientation = 1;    // Verticale
+        if ($("#ORIENTATION_1").length) {
+            orientation = parseInt($("#cmbOrientation").val());
+        }
+        return orientation;
+    }
+</script>
+
+
+

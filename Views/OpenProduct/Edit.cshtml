@@ -1,0 +1,23 @@
+﻿@model OpenProductConfigurationEditModel
+
+<h1>Configura il tuo prodotto</h1>
+<form method="post">
+    <input id="ProductId" type="hidden" asp-for="@Model.ProductId" />
+    <table width="100%">
+        @for (int i = 0; i < Model.Features.Count; i++)
+        {
+            <tr>
+                @*<th>@Model.Features[i].Name</th>*@
+                <td><partial name="@Model.Features[i].EditorName" for="@Model.Features[i]" /></td>
+            </tr>
+        }
+    </table>
+</form>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+}

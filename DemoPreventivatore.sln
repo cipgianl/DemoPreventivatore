@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoPreventivatore", "DemoPreventivatore.csproj", "{EE4816AC-8CCD-471A-B3E3-0408A9633D5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE4816AC-8CCD-471A-B3E3-0408A9633D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE4816AC-8CCD-471A-B3E3-0408A9633D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE4816AC-8CCD-471A-B3E3-0408A9633D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE4816AC-8CCD-471A-B3E3-0408A9633D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74CD7084-0C36-44C9-B170-73C720FD8B24}
+	EndGlobalSection
+EndGlobal

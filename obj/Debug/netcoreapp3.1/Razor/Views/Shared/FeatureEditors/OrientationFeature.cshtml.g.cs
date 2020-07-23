@@ -28,20 +28,27 @@ using DemoPreventivatore.Models;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\Gianluca\source\repos\DemoPreventivatore\Views\_ViewImports.cshtml"
-using DemoPreventivatore.Models.InputModels;
+using DemoPreventivatore.Models.Enums;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\Gianluca\source\repos\DemoPreventivatore\Views\_ViewImports.cshtml"
+using DemoPreventivatore.Models.InputModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Gianluca\source\repos\DemoPreventivatore\Views\_ViewImports.cshtml"
 using DemoPreventivatore.Models.FeatureTypes;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"80d3c2b90966c542631cdd9ac96df53808a58b9e", @"/Views/Shared/FeatureEditors/OrientationFeature.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"46432ef6527283dfe409562a3079b72e53bc205f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4ed1500205652f9b9f6214afdb0da156f72e937a", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_FeatureEditors_OrientationFeature : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<OrientationFeature>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("cmbOrientation"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -111,7 +118,7 @@ WriteAttributeValue("", 476, nameFeature, 476, 12, false);
 #line hidden
 #nullable disable
             WriteLiteral("</label>\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "80d3c2b90966c542631cdd9ac96df53808a58b9e6239", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "80d3c2b90966c542631cdd9ac96df53808a58b9e6435", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper>();

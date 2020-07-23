@@ -28,20 +28,27 @@ using DemoPreventivatore.Models;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\Gianluca\source\repos\DemoPreventivatore\Views\_ViewImports.cshtml"
-using DemoPreventivatore.Models.InputModels;
+using DemoPreventivatore.Models.Enums;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\Gianluca\source\repos\DemoPreventivatore\Views\_ViewImports.cshtml"
+using DemoPreventivatore.Models.InputModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Gianluca\source\repos\DemoPreventivatore\Views\_ViewImports.cshtml"
 using DemoPreventivatore.Models.FeatureTypes;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"554fb38a1949e7d88c19583317581045fd34578b", @"/Views/OpenProduct/Edit.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"46432ef6527283dfe409562a3079b72e53bc205f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4ed1500205652f9b9f6214afdb0da156f72e937a", @"/Views/_ViewImports.cshtml")]
     public class Views_OpenProduct_Edit : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<OpenProductConfigurationEditModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("ProductId"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -75,9 +82,9 @@ using DemoPreventivatore.Models.FeatureTypes;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n<h1>Configura il tuo prodotto</h1>\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "554fb38a1949e7d88c19583317581045fd34578b4914", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "554fb38a1949e7d88c19583317581045fd34578b5110", async() => {
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "554fb38a1949e7d88c19583317581045fd34578b5176", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "554fb38a1949e7d88c19583317581045fd34578b5372", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -111,7 +118,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
 #nullable disable
                 WriteLiteral("            <tr>\r\n");
                 WriteLiteral("                <td>");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "554fb38a1949e7d88c19583317581045fd34578b7332", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "554fb38a1949e7d88c19583317581045fd34578b7528", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();

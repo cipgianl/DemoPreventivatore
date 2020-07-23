@@ -36,7 +36,21 @@
     document.addEventListener("DOMContentLoaded", function (event) {
         $('select[id^="cmbPrintingIndication"]').off().change(function () {
             let sectionId = parseInt($(this).attr("section-id"));
+            let indication = parseInt($(this).val());
 
+            switch (indication) {
+                case -1:
+                    showBoxFeature(false, sectionId);
+                    break;
+                case 1:
+                    showBoxFeature(true, sectionId);
+                    showFieldBackColor(false, sectionId);
+                    break;
+                case 2:
+                    showBoxFeature(true, sectionId);
+                    showFieldBackColor(true, sectionId);
+                    break;
+            }
         });
     });
 </script>

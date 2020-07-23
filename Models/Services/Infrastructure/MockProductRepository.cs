@@ -103,7 +103,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
             opsColor.Add(new PrintColor
             {
                 ID = 1,
-                SectionId = 1,
+                IdSection = 1,
                 Indication = 1,
                 Value = 1,
                 ValueName = "4 Colori",
@@ -112,7 +112,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
             opsColor.Add(new PrintColor
             {
                 ID = 2,
-                SectionId = 1,
+                IdSection = 1,
                 Indication = 1,
                 Value = 2,
                 ValueName = "Bianco e nero",
@@ -121,7 +121,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
             opsColor.Add(new PrintColor
             {
                 ID = 3,
-                SectionId = 1,
+                IdSection = 1,
                 Indication = 2,
                 Value = 1,
                 ValueName = "4 Colori",
@@ -130,12 +130,13 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
             opsColor.Add(new PrintColor
             {
                 ID = 4,
-                SectionId = 1,
+                IdSection = 1,
                 Indication = 2,
                 Value = 2,
                 ValueName = "Bianco e nero",
                 FieldName = "Fronte"
             });
+
             List<PrintingIndication> opsInd2 = new List<PrintingIndication>();
             opsInd2.Add(new PrintingIndication
             {
@@ -200,7 +201,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                             Calculate = true,
                             Options = opsColor.ToArray(),
                             FrontColor = PrintColorEnum.Color,
-                            RearColor = PrintColorEnum.Nothing
+                            RearColor = PrintColorEnum.BlackAndWhite
                         },
                         new PrintingIndicationFeature
                         {

@@ -28,20 +28,27 @@ using DemoPreventivatore.Models;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\Gianluca\source\repos\DemoPreventivatore\Views\_ViewImports.cshtml"
-using DemoPreventivatore.Models.InputModels;
+using DemoPreventivatore.Models.Enums;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\Gianluca\source\repos\DemoPreventivatore\Views\_ViewImports.cshtml"
+using DemoPreventivatore.Models.InputModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Gianluca\source\repos\DemoPreventivatore\Views\_ViewImports.cshtml"
 using DemoPreventivatore.Models.FeatureTypes;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6d2552ce205a470a5fa1d51d6e6bc2aa155a2fa5", @"/Views/Shared/FeatureEditors/OpenFinalSizeFeature.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"46432ef6527283dfe409562a3079b72e53bc205f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4ed1500205652f9b9f6214afdb0da156f72e937a", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_FeatureEditors_OpenFinalSizeFeature : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<OpenFinalSizeFeature>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("cmbOpenSize"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -117,7 +124,7 @@ WriteAttributeValue("", 477, nameFeature, 477, 12, false);
 #line hidden
 #nullable disable
             WriteLiteral("</label>\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6d2552ce205a470a5fa1d51d6e6bc2aa155a2fa58090", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6d2552ce205a470a5fa1d51d6e6bc2aa155a2fa58286", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper>();
@@ -149,7 +156,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n        </div>\r\n    </div>\r\n\r\n\r\n    <div id=\"boxOFSF_txtSize\" class=\"form-row\" aria-describedby=\"helpOFSFSize\">\r\n        <div class=\"col-sm-2 col-3\">\r\n            <label for=\"txtOPenSize_Width\" class=\"col-form-label ml-3\">Base</label>\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6d2552ce205a470a5fa1d51d6e6bc2aa155a2fa510566", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6d2552ce205a470a5fa1d51d6e6bc2aa155a2fa510762", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -183,7 +190,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
         <div class=""col-sm-2 col-3"">
             <label for=""txtOPenSize_Height"" class=""col-form-label ml-3"">Altezza</label>
             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6d2552ce205a470a5fa1d51d6e6bc2aa155a2fa512754", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6d2552ce205a470a5fa1d51d6e6bc2aa155a2fa512950", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();

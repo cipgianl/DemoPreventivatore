@@ -1,9 +1,109 @@
 ﻿@model PrintColorFeature
 
-<div>Servizio Colore</div>
+@{
 
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function (event) {
+    // Determino i nomi dei campi in base all'Id sezione
+    var nameFeature = $"{Model.FeatureID}_{Model.SectionId}";
+    var fieldCmbFrontColor = $"cmbFrontColor{Model.SectionId}";
+    var fieldCmbBackColor = $"cmbBackColor{Model.SectionId}";
+    var boxFieldBackColor = $"boxFieldBackColor{Model.SectionId}";
 
-    });
-</script>
+    var fieldNameFront = "";
+    var optionsFront = new List<SelectListItem>();
+
+    var fieldNameBack = "";
+    var optionsBack = new List<SelectListItem>();
+
+
+
+    for (int i = 0; i < Model.Options.Length; i++)
+    {
+        // Controllo se la feature e per la sezione corretta
+        if (Model.Options[i].IdSection == Model.SectionId)
+        {
+            if(Model.Options[i].Indication == (int) PrintingIndicationEnum.OnlyFront)
+            {
+                if(fieldNameFront == "")
+                {
+                    fieldNameFront = Model.Options[i].FieldName;
+                }
+                optionsFront.Add(new SelectListItem
+                {
+                    Value = Model.Options[i].Value.ToString(),
+                    Text = Model.Options[i].ValueName,
+                    Selected = (int)Model.FrontColor == Model.Options[i].Value ? true : false
+                });
+            }
+            else
+            {
+                if (fieldNameBack == "")
+                {
+                    fieldNameBack = Model.Options[i].FieldName;
+                }
+                optionsBack.Add(new SelectListItem
+                {
+                    Value = Model.Options[i].Value.ToString(),
+                    Text = Model.Options[i].ValueName,
+                    Selected = (int)Model.RearColor == Model.Options[i].Value ? true : false
+                });
+            }
+        }
+    }
+
+}
+
+
+    <div id="@nameFeature" class="container-fluid box-feature">
+        <div style="min-width: 200px;" class="form-row">
+            <div class="col-10 col-form-label">
+                <label for="@fieldCmbFrontColor">@fieldNameFront</label>
+                <select id="@fieldCmbFrontColor" asp-items="optionsFront" asp-for="@Model.FrontColor" section-id="@Model.SectionId" class="form-control" style="max-width: 20em;"></select>
+            </div>
+        </div>
+        <div id="@boxFieldBackColor" style="min-width: 200px;" class="form-row">
+            <div class="col-10 col-form-label">
+                <label for="@fieldCmbBackColor">@fieldNameBack</label>
+                <select id="@fieldCmbBackColor" asp-items="optionsBack" asp-for="@Model.RearColor" section-id="@Model.SectionId" class="form-control" style="max-width: 20em;"></select>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function (event) {
+            var cmbIndication = "#cmbPrintingIndication" + @Model.SectionId;
+            var boxFieldBack = "#@boxFieldBackColor";
+            var boxFeature = "#@nameFeature";
+
+            var indication = $(cmbIndication).val();
+
+            switch (parseInt(indication)) {
+                case -1:
+                    showBoxFeature(false, @Model.SectionId);
+                    break;
+                case 1:
+                    showFieldBackColor(false, @Model.SectionId);
+                    break;
+                case 2:
+                    showFieldBackColor(true, @Model.SectionId);
+                    break;
+            }
+        });
+
+        function showFieldBackColor(show, sectionId) {
+            var boxFieldBack = "#boxFieldBackColor" + sectionId;
+
+            if (show)
+                $(boxFieldBack).show();
+            else
+                $(boxFieldBack).hide();
+        }
+
+        function showBoxFeature(show, sectionId) {
+            var boxFeature = "#@Model.FeatureID" + "_" + sectionId;
+
+            if (show)
+                $(boxFeature).show();
+            else
+                $(boxFeature).hide();
+        }
+    </script>

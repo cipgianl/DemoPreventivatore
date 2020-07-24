@@ -10,6 +10,6 @@ namespace DemoPreventivatore.Models.FeatureTypes
     public class OrientationFeature : BaseFeature
     {
         public OrientationEnum Orientation { get; set; }
-        public Orientation[] Options { get; set; }
+        public FeatOrientation[] Options { get; set; }
     }
 }

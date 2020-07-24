@@ -26,9 +26,17 @@ namespace DemoPreventivatore.Controllers
         public JsonResult GetSelectSize([FromServices] IProductService productService, int id, int value)
         {
             OpenProductConfigurationEditModel product = productService.GetProductForEditing(id);
-            var feat = (OpenFinalSizeFeature)product.Features.Where(w => w.FeatureID == "FINAL_FTO").First();
+            var feat = (OpenFinalSizeFeature)product.Features.Where(w => w.FeatureId == "FINAL_FTO").First();
             var selectedValue = feat.Options.Where(w => w.ID == value).First();
             return Json(selectedValue);
+        }
+
+        [HttpGet]
+        public JsonResult GetGramsBySupportId([FromServices] IProductService productService, string supportId, int sectionId)
+        {
+            OpenProductConfigurationEditModel product = productService.GetProductForEditing(1);
+            var feat = (SupportFeature)product.Features.Where(w => w.FeatureId == "SUPPORT" && w.SectionId == sectionId).First();
+            return Json(feat.Options.Where(g => g.SupportId == supportId).Select(g => g.Grams).ToArray());
         }
     }
 }

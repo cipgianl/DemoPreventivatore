@@ -32,8 +32,8 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
 
         private static Dictionary<int, List<BaseFeature>> GetInMemoryDatabase()
         {
-            List<OpenFinalSize> ops = new List<OpenFinalSize>();
-            ops.Add(new OpenFinalSize
+            List<FeatOpenFinalSize> ops = new List<FeatOpenFinalSize>();
+            ops.Add(new FeatOpenFinalSize
             {
                 ID = 1,
                 IdSection = 1,
@@ -45,7 +45,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                 MinHeight = 5.0f,
                 MaxHeight = 10.5f
             });
-            ops.Add(new OpenFinalSize
+            ops.Add(new FeatOpenFinalSize
             {
                 ID = 2,
                 IdSection = 1,
@@ -57,7 +57,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                 MinHeight = 5.0f,
                 MaxHeight = 10.5f
             });
-            ops.Add(new OpenFinalSize
+            ops.Add(new FeatOpenFinalSize
             {
                 ID = 3,
                 IdSection = 1,
@@ -71,36 +71,36 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
             });
 
 
-            List<Orientation> opsOrient = new List<Orientation>();
-            opsOrient.Add(new Orientation
+            List<FeatOrientation> opsOrient = new List<FeatOrientation>();
+            opsOrient.Add(new FeatOrientation
             {
                 ID = 1,
                 IdSection = 1,
                 ValueName = "Verticale"
             });
-            opsOrient.Add(new Orientation
+            opsOrient.Add(new FeatOrientation
             {
                 ID = 2,
                 IdSection = 1,
                 ValueName = "Orizzontale"
             });
 
-            List<PrintingIndication> opsInd = new List<PrintingIndication>();
-            opsInd.Add(new PrintingIndication
+            List<FeatPrintingIndication> opsInd = new List<FeatPrintingIndication>();
+            opsInd.Add(new FeatPrintingIndication
             {
                 ID = 1,
                 IdSection = 1,
                 ValueName = "Stampa solo fronte"
             });
-            opsInd.Add(new PrintingIndication
+            opsInd.Add(new FeatPrintingIndication
             {
                 ID = 2,
                 IdSection = 1,
                 ValueName = "Stampa fronte/retro"
             });
 
-            List<PrintColor> opsColor = new List<PrintColor>();
-            opsColor.Add(new PrintColor
+            List<FeatPrintColor> opsColor = new List<FeatPrintColor>();
+            opsColor.Add(new FeatPrintColor
             {
                 ID = 1,
                 IdSection = 1,
@@ -109,7 +109,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                 ValueName = "4 Colori",
                 FieldName = "Fronte"
             });
-            opsColor.Add(new PrintColor
+            opsColor.Add(new FeatPrintColor
             {
                 ID = 2,
                 IdSection = 1,
@@ -118,7 +118,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                 ValueName = "Bianco e nero",
                 FieldName = "Fronte"
             });
-            opsColor.Add(new PrintColor
+            opsColor.Add(new FeatPrintColor
             {
                 ID = 3,
                 IdSection = 1,
@@ -127,7 +127,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                 ValueName = "4 Colori",
                 FieldName = "Retro"
             });
-            opsColor.Add(new PrintColor
+            opsColor.Add(new FeatPrintColor
             {
                 ID = 4,
                 IdSection = 1,
@@ -137,20 +137,71 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                 FieldName = "Fronte"
             });
 
-            List<PrintingIndication> opsInd2 = new List<PrintingIndication>();
-            opsInd2.Add(new PrintingIndication
+            List<FeatSupport> opsSupp = new List<FeatSupport>();
+            opsSupp.Add(new FeatSupport { 
+                ID = 1,
+                IdSection = 1,
+                SupportId = "DB",
+                SupportClass = "Usomano",
+                SupportName = "Diablo",
+                Grams = 300,
+                SupoortType = "SHEET"                
+            });
+            opsSupp.Add(new FeatSupport
+            {
+                ID = 2,
+                IdSection = 1,
+                SupportId = "ARWH",
+                SupportClass = "Usomano",
+                SupportName = "Arcoprint Extra White",
+                Grams = 300,
+                SupoortType = "SHEET"
+            });
+            opsSupp.Add(new FeatSupport
+            {
+                ID = 3,
+                IdSection = 1,
+                SupportId = "SFS",
+                SupportClass = "Patinate",
+                SupportName = "Symbol Freelife satin",
+                Grams = 300,
+                SupoortType = "SHEET"
+            });
+            opsSupp.Add(new FeatSupport
+            {
+                ID = 4,
+                IdSection = 1,
+                SupportId = "SFS",
+                SupportClass = "Patinate",
+                SupportName = "Symbol Freelife satin",
+                Grams = 350,
+                SupoortType = "SHEET"
+            });
+            opsSupp.Add(new FeatSupport
+            {
+                ID = 5,
+                IdSection = 1,
+                SupportId = "PROVIDED_1",
+                SupportClass = "Altro",
+                SupportName = "Supporto fornito",
+                Grams = 0,
+                SupoortType = "SHEET"
+            });
+
+            List<FeatPrintingIndication> opsInd2 = new List<FeatPrintingIndication>();
+            opsInd2.Add(new FeatPrintingIndication
             {
                 ID = -1,
                 IdSection = 2,
                 ValueName = "Nessuna"
             });
-            opsInd2.Add(new PrintingIndication
+            opsInd2.Add(new FeatPrintingIndication
             {
                 ID = 1,
                 IdSection = 2,
                 ValueName = "Stampa solo fronte"
             });
-            opsInd2.Add(new PrintingIndication
+            opsInd2.Add(new FeatPrintingIndication
             {
                 ID = 2,
                 IdSection = 2,
@@ -163,7 +214,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                         new OpenFinalSizeFeature
                         {
                             Name = "Formato finito",
-                            FeatureID = "FINAL_FTO",
+                            FeatureId = "FINAL_FTO",
                             SectionId = 1,
                             Visible = true,
                             Calculate = true,
@@ -175,7 +226,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                         new OrientationFeature
                         {
                             Name = "Orientamento",
-                            FeatureID = "ORIENTATION",
+                            FeatureId = "ORIENTATION",
                             SectionId = 1,
                             Visible = true,
                             Calculate = true,
@@ -185,7 +236,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                         new PrintingIndicationFeature
                         {
                             Name = "Indicazione di stampa",
-                            FeatureID = "PRINTING_INDICATION",
+                            FeatureId = "PRINTING_INDICATION",
                             SectionId = 1,
                             Visible = true,
                             Calculate = true,
@@ -195,7 +246,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                         new PrintColorFeature
                         {
                             Name = "",
-                            FeatureID = "PRINT_COLOR",
+                            FeatureId = "PRINT_COLOR",
                             SectionId = 1,
                             Visible = true,
                             Calculate = true,
@@ -203,10 +254,22 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                             FrontColor = PrintColorEnum.Color,
                             RearColor = PrintColorEnum.BlackAndWhite
                         },
+                        new SupportFeature
+                        {
+                            Name = "Supporti di stampa",
+                            FeatureId = "SUPPORT",
+                            SectionId = 1,
+                            Visible = true,
+                            Calculate = true,
+                            Options = opsSupp.ToArray(),
+                            SelectedValue = "SFS",
+                            SupportName = "Symbol Freelife satin",
+                            Grams = 350
+                        },
                         new PrintingIndicationFeature
                         {
                             Name = "Indicazione di stampa",
-                            FeatureID = "PRINTING_INDICATION",
+                            FeatureId = "PRINTING_INDICATION",
                             SectionId = 2,
                             Visible = true,
                             Calculate = true,

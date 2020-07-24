@@ -3,7 +3,7 @@
 @{
 
     // Determino i nomi dei campi in base all'Id sezione
-    var nameFeature = $"{Model.FeatureID}_{Model.SectionId}";
+    var nameFeature = $"{Model.FeatureId}_{Model.SectionId}";
     var fieldCmbFrontColor = $"cmbFrontColor{Model.SectionId}";
     var fieldCmbBackColor = $"cmbBackColor{Model.SectionId}";
     var boxFieldBackColor = $"boxFieldBackColor{Model.SectionId}";
@@ -99,7 +99,7 @@
         }
 
         function showBoxFeature(show, sectionId) {
-            var boxFeature = "#@Model.FeatureID" + "_" + sectionId;
+            var boxFeature = "#@Model.FeatureId" + "_" + sectionId;
 
             if (show)
                 $(boxFeature).show();

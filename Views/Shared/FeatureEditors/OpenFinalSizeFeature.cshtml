@@ -1,7 +1,7 @@
 ﻿@model OpenFinalSizeFeature
 
 @{
-    var nameFeature = $"{Model.FeatureID}_{Model.SectionId}";
+    var nameFeature = $"{Model.FeatureId}_{Model.SectionId}";
     var options = new List<SelectListItem>();
 
     for (int i = 0; i < Model.Options.Length; i++)
@@ -112,6 +112,9 @@
             let width = $("#txtOpenSize_Width").val();
             let height = $("#txtOpenSize_Height").val();
 
+            width = width.replace(",", ".");
+            height = height.replace(",", ".");
+
             let value = $(this).val();
             if (value == 0 || value == '') {
                 $(this).removeClass("is-valid");
@@ -180,6 +183,10 @@
 
 
             }
+        });
+
+        $("#txtOpenSize_Width, #txtOpenSize_Height").on("keypress keyup", function (event) {
+            onlyNumberWithDecimal(event, this);
         });
     });
 

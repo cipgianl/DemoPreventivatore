@@ -11,6 +11,6 @@ namespace DemoPreventivatore.Models.FeatureTypes
     {
         public PrintColorEnum FrontColor { get; set; }
         public PrintColorEnum RearColor { get; set; }
-        public PrintColor[] Options { get; set; }
+        public FeatPrintColor[] Options { get; set; }
     }
 }

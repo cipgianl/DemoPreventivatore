@@ -10,6 +10,6 @@ namespace DemoPreventivatore.Models.FeatureTypes
     public class PrintingIndicationFeature : BaseFeature
     {
         public PrintingIndicationEnum Indication { get; set; }
-        public PrintingIndication[] Options { get; set; }
+        public FeatPrintingIndication[] Options { get; set; }
     }
 }

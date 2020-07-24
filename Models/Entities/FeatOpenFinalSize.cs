@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DemoPreventivatore.Models.Entities
 {
-    public class OpenFinalSize
+    public class FeatOpenFinalSize
     {
         public int ID { get; set; }
         public int IdSection { get; set; }

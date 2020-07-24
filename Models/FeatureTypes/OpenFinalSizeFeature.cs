@@ -11,6 +11,6 @@ namespace DemoPreventivatore.Models.FeatureTypes
         public int SelectedValue { get; set; }
         public float Width { get; set; }
         public float Height { get; set; }
-        public OpenFinalSize[] Options { get; set; }
+        public FeatOpenFinalSize[] Options { get; set; }
     }
 }

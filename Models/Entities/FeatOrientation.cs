@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DemoPreventivatore.Models.Entities
 {
-    public class Orientation
+    public class FeatOrientation
     {
         public int ID { get; set; }
         public int IdSection { get; set; }

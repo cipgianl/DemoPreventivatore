@@ -1,0 +1,135 @@
+﻿@model SupportFeature
+
+@{ 
+    // Determino il nome dei campi in base all'Id sezione
+    var nameFeature = $"{Model.FeatureId}_{Model.SectionId}";
+
+    var boxSelectedSupport = $"boxSelectSupport{Model.SectionId}";
+    var cmbSupport = $"cmbSupport{Model.SectionId}";
+
+    var boxGrams = $"boxGrams{Model.SectionId}";
+    var cmbGrams = $"cmbGrams{Model.SectionId}";
+
+    var boxCustomSupport = $"boxCustomSupport{Model.SectionId}";
+    var txtSuppName = $"txtSuppName{Model.SectionId}";
+    var txtGrams = $"txtGrams{Model.SectionId}";
+
+    var optionsDistinct = Model.Options.Select(d => new { value = d.SupportId, group = d.SupportClass, text = d.SupportName }).Distinct().ToList();
+
+    SelectListGroup oldGroup = null;
+    SelectListGroup group = null;
+
+    var options = new List<SelectListItem>();
+    for (int i = 0; i < optionsDistinct.Count; i++)
+    {
+        // Controllo se è cambiato il tipo di carta
+        if (oldGroup == null || oldGroup.Name != optionsDistinct[i].group)
+        {
+            group = new SelectListGroup { Name = optionsDistinct[i].group, Disabled = false };
+            oldGroup = group;
+        }
+
+        options.Add(new SelectListItem
+        {
+            Group = group,
+            Value = optionsDistinct[i].value,
+            Text = optionsDistinct[i].text,
+            Selected = Model.SelectedValue == optionsDistinct[i].value ? true : false
+        }); ;
+    }
+
+    var grams = Model.Options.Where(g => g.SupportId == Model.SelectedValue)
+        .Select(g => new SelectListItem { Text = g.Grams.ToString(), Value = g.Grams.ToString() }).ToList();
+
+
+}
+
+<div id="@nameFeature" section-id="@Model.SectionId" class="container-fluid box-feature" >
+    <div id="@boxSelectedSupport" style="min-width: 200px;" class="form-row">
+        <div class="col-10 col-form-label">
+            <label for="@cmbSupport">Supporto</label>
+            <select id="@cmbSupport" asp-items="options" asp-for="@Model.SelectedValue" section-id="@Model.SectionId" class="form-control" style="max-width: 20em;"></select>
+        </div>
+        <div id="@boxGrams" section-id="@Model.SectionId" class="col-10 col-form-label">
+            <label for="@cmbGrams">Grammi</label>
+            <select id="@cmbGrams" asp-items="grams" asp-for="@Model.Grams" section-id="@Model.SectionId" class="form-control" style="max-width: 20em;"></select>
+        </div>
+    </div>
+    <div id="@boxCustomSupport" class="form-row">
+        <div class="col-10 col-form-label">
+            <label for="@txtSuppName">Nome supporto</label>
+            <input id="@txtSuppName" type="text" class="form-control" asp-for="@Model.SupportName" style="max-width: 20em;" maxlength="50" />
+        </div>
+        <div class="col-10 col-form-label">
+            <label for="@txtGrams">Grammi</label>
+            <input id="@txtGrams" type="text" class="form-control" asp-for="@Model.Grams" style="max-width: 6em;" maxlength="3"/>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function (event) {
+        let sectionId = @Model.SectionId;
+        $("#boxCustomSupport" + sectionId).hide();
+
+        // Mi metto in ascolto della combobox supporti
+        $('select[id^="cmbSupport"]').off().change(function () {
+            let sectionId = parseInt($(this).attr("section-id"));
+            let supportId = $(this).val();
+
+            if (supportId.startsWith("PROVIDED")) {
+                $("#boxGrams" + sectionId).hide();
+                $("#txtSuppName" + sectionId).val("").attr("required");
+                $("#txtGrams" + sectionId).val("").attr("required");
+                $("#boxCustomSupport" + sectionId).show();
+                $("#txtSuppName" + sectionId).focus();
+            } else {
+                $("#txtSuppName" + sectionId).removeAttr("required").removeClass("is-valid");
+                $("#txtGrams" + sectionId).removeAttr("required").removeClass("is-valid");
+                $("#boxCustomSupport" + sectionId).hide();
+                $("#boxGrams" + sectionId).show();
+
+                $.ajax({
+                    url: "@Url.Action("GetGramsBySupportId")",
+                    data: { supportId: supportId, sectionId: sectionId },
+                    dataType: "json",
+                    success: function (msg) {
+                        // Rimuovo gli elementi dalla combobox dei grammi
+                        $("#cmbGrams" + sectionId + " option").remove();
+                        // Inserisco i nuovi valori
+                        $(msg).each(function () {
+                            console.log(this);
+                            var option = $("<option />").val(this).text(this).attr("section-id", sectionId);
+                            $("#cmbGrams" + sectionId).append(option);
+                        });
+                    },
+                    error: function (req, status, error) {
+                        console.log(error);
+                    }
+                })
+            }
+
+        });
+
+        $(`#txtSuppName${sectionId}, #txtGrams${sectionId}`).blur(function () {
+            let suppName = $(`#txtSuppName${sectionId}`).val();
+            let suppgram = $(`#txtGrams${sectionId}`).val();
+
+            let value = $(this).val();
+            if (value == 0 || value == '') {
+                $(this).removeClass("is-valid");
+                $(this).addClass("is-invalid");
+            } else {
+                $(this).removeClass("is-invalid");
+                $(this).addClass("is-valid");
+            }
+
+        });
+
+        $(`#txtGrams${sectionId}`).on("keypress keyup blur", function (event) {
+            onlyNumberWithoutDecimal(event, this);
+        });
+
+    });
+
+</script>

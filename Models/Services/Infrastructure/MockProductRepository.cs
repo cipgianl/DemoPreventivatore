@@ -88,13 +88,13 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
             List<FeatPrintingIndication> opsInd = new List<FeatPrintingIndication>();
             opsInd.Add(new FeatPrintingIndication
             {
-                ID = 1,
+                ID = (int) IndicationEnum.OnlyFront,
                 IdSection = 1,
                 ValueName = "Stampa solo fronte"
             });
             opsInd.Add(new FeatPrintingIndication
             {
-                ID = 2,
+                ID = (int) IndicationEnum.FrontRear,
                 IdSection = 1,
                 ValueName = "Stampa fronte/retro"
             });
@@ -191,21 +191,47 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
             List<FeatPrintingIndication> opsInd2 = new List<FeatPrintingIndication>();
             opsInd2.Add(new FeatPrintingIndication
             {
-                ID = -1,
+                ID = (int) IndicationEnum.Nothing,
                 IdSection = 2,
                 ValueName = "Nessuna"
             });
             opsInd2.Add(new FeatPrintingIndication
             {
-                ID = 1,
+                ID = (int) IndicationEnum.OnlyFront,
                 IdSection = 2,
                 ValueName = "Stampa solo fronte"
             });
             opsInd2.Add(new FeatPrintingIndication
             {
-                ID = 2,
+                ID = (int) IndicationEnum.FrontRear,
                 IdSection = 2,
                 ValueName = "Stampa fronte/retro"
+            });
+
+            List<FeatLamination> opsLam = new List<FeatLamination>();
+            opsLam.Add(new FeatLamination
+            {
+                ID = 1,
+                IdSection = 1,
+                Coating = CoatingEnum.Nothing,
+                Indication = IndicationEnum.Nothing,
+                ValueName = "Nessuna"
+            });
+            opsLam.Add(new FeatLamination
+            {
+                ID = 2,
+                IdSection = 1,
+                Coating = CoatingEnum.Glossy,
+                Indication = IndicationEnum.OnlyFront,
+                ValueName = "Lucida solo fronte"
+            });
+            opsLam.Add(new FeatLamination
+            {
+                ID = 3,
+                IdSection = 1,
+                Coating = CoatingEnum.Glossy,
+                Indication = IndicationEnum.FrontRear,
+                ValueName = "Lucida fronte retro"
             });
 
             return new Dictionary<int, List<BaseFeature>> {
@@ -241,7 +267,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                             Visible = true,
                             Calculate = true,
                             Options = opsInd.ToArray(),
-                            Indication = PrintingIndicationEnum.OnlyFront
+                            Indication = IndicationEnum.OnlyFront
                         },
                         new PrintColorFeature
                         {
@@ -266,6 +292,18 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                             SupportName = "Symbol Freelife satin",
                             Grams = 350
                         },
+                        new LaminationFeature
+                        {
+                            Name = "Plastificazione",
+                            FeatureId = "LAMINATION",
+                            SectionId = 1,
+                            Visible = true,
+                            Calculate = true,
+                            Options = opsLam.ToArray(),
+                            SelectedValue = 1,
+                            Coating = 0,
+                            Indication = 1
+                        },
                         new PrintingIndicationFeature
                         {
                             Name = "Indicazione di stampa",
@@ -274,7 +312,7 @@ namespace DemoPreventivatore.Models.Services.Infrastructure
                             Visible = true,
                             Calculate = true,
                             Options = opsInd2.ToArray(),
-                            Indication = PrintingIndicationEnum.Nothing
+                            Indication = IndicationEnum.Nothing
                         }
                     }
                 },

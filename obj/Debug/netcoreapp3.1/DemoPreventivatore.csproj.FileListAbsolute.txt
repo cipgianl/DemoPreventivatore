@@ -357,3 +357,4 @@ C:\Users\Gianluca\source\repos\DemoPreventivatore\obj\Debug\netcoreapp3.1\DemoPr
 C:\Users\Gianluca\source\repos\DemoPreventivatore\obj\Debug\netcoreapp3.1\DemoPreventivatore.pdb
 C:\Users\Gianluca\source\repos\DemoPreventivatore\obj\Debug\netcoreapp3.1\DemoPreventivatore.genruntimeconfig.cache
 C:\Users\Gianluca\source\repos\DemoPreventivatore\obj\Debug\netcoreapp3.1\Razor\Views\Shared\FeatureEditors\SupportFeature.cshtml.g.cs
+C:\Users\Gianluca\source\repos\DemoPreventivatore\obj\Debug\netcoreapp3.1\Razor\Views\Shared\FeatureEditors\LaminationFeature.cshtml.g.cs

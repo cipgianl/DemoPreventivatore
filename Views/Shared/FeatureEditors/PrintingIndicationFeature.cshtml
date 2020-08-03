@@ -15,7 +15,7 @@
             {
                 Value = Model.Options[i].ID.ToString(),
                 Text = Model.Options[i].ValueName,
-                Selected = (int)Model.Indication == Model.Options[i].ID ? true : false
+                Selected = (int) Model.Indication == Model.Options[i].ID ? true : false
             });
         }
 
@@ -27,7 +27,7 @@
     <div style="min-width: 200px;" class="form-row">
         <div class="col-10 col-form-label">
             <label for="@fieldCmbIndication">@Model.Name</label>
-            <select id="@fieldCmbIndication" asp-items="options" asp-for="@Model.Indication" section-id="@Model.SectionId" class="form-control" style="max-width: 20em;"></select>
+            <select id="@fieldCmbIndication" asp-items="options" asp-for= "@Model.Indication" section-id="@Model.SectionId" class="form-control" style="max-width: 20em;"></select>
         </div>
     </div>
 </div>

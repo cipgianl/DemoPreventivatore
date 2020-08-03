@@ -1,0 +1,47 @@
+﻿@model LaminationFeature
+
+@{
+    // Determino i nomi dei campi in base all'Id sezione
+    var nameFeature = $"{Model.FeatureId}_{Model.SectionId}";
+    var fieldCmbLamination = $"cmbLamination{Model.SectionId}";
+}
+
+<div id="@nameFeature" class="container-fluid box-feature">
+    <div style="min-width: 200px;" class="form-row">
+        <div class="col-10 col-form-label">
+            <label for="@fieldCmbLamination">@Model.Name</label>
+            <select id="@fieldCmbLamination" asp-for="@Model.SelectedValue" section-id="@Model.SectionId" coating="@Model.Coating" indication="@Model.Indication" class="form-control" style="max-width: 20em;">
+                @foreach (var opt in Model.Options)
+                {
+                    @if (Model.SelectedValue == opt.ID)
+                    {
+                        <option value="@opt.ID.ToString()" coating="@Convert.ToInt32(opt.Coating)" indication="@Convert.ToInt32(opt.Indication)" selected="selected">@opt.ValueName</option>
+                    }
+                    else
+                    {
+                        <option value="@opt.ID.ToString()" coating="@Convert.ToInt32(opt.Coating)" indication="@Convert.ToInt32(opt.Indication)">@opt.ValueName</option>
+                    }
+
+                }
+            </select>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function (event) {
+        $('select[id^="cmbLamination"]').off().change(function () {
+            // Recupero gli attributi della select
+            let sectionId = parseInt($(this).attr("section-id"));
+
+            // Recupero l'elemento scelto e i suoi attributi
+            let selElement = $("#" + $(this).attr("id") + " option:selected");
+            let indication = parseInt($(selElement).attr("indication"));
+            let coating = parseInt($(selElement).attr("coating"));
+
+            // Assegno i nuovi valori agli attributi della combo box
+            parseInt($(this).attr("indication", indication));
+            parseInt($(this).attr("coating", coating));
+        });
+    });
+</script>

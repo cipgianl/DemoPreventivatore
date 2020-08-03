@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace DemoPreventivatore.Models.Enums
 {
-    public enum PrintingIndicationEnum
+    public enum CoatingEnum
     {
-        Nothing = -1,
-        OnlyFront = 1,
-        FrontRear = 2
+        Nothing = 0,
+        Glossy = 1,
+        Matte = 2,
+        SoftTouch = 3
     }
 }
